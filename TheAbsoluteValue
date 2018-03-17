@@ -1,0 +1,47 @@
+using System;
+
+/*
+This program retuns an absolute value of a number given to the Console.
+Displays short text and handles parsing error.
+*/
+
+namespace The_absolute_value
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Display(); /**/
+           
+        }
+        public static int AbsoluteValue(int a) /* returns absolute value of the given number*/
+        {
+         return (a >= 0) ? a : -a;
+        }
+
+        public static void Display()
+        {
+            Console.WriteLine("This is short program retunrs you the absolute value of any given number");
+            Console.WriteLine("Give your number to the console");
+            if (Int32.TryParse(Console.ReadLine(), out int a))
+            {
+                AbsoluteValue(a);
+                Console.WriteLine("Your number's absolute value is {0}", AbsoluteValue(a));
+                Console.WriteLine("Press any button to exit");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("The given value isn't a number");
+                Console.WriteLine("Press any button to exit");
+                Console.ReadKey();
+            }
+
+        
+        }
+
+    }
+      
+
+    }
+
