@@ -1,0 +1,52 @@
+using System;
+
+namespace ArrayValuesSum
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           int n = GetTabLenght();
+           int[] tab = new int[n];
+           int sum = 0;
+
+            Random ran = new Random();
+
+            for (int i = 0;i<n;i++)
+            {
+                tab[i] = ran.Next(0,10);
+            }
+            Console.WriteLine("Values of the array of lenght {0} are as follows:", n);
+           
+            foreach (int value in tab)
+            {
+                Console.Write("{0} ", value);
+                sum += value;
+            }
+
+            Console.WriteLine("Sum of values present in the arrays is equal to {0}", sum);
+            Console.ReadLine();
+        }
+
+        static public int GetTabLenght()
+        {
+            Console.WriteLine("Give the lenght of an array");
+            int licz = 0;
+            while (licz == 0)
+            {
+                if (Int32.TryParse(Console.ReadLine(), out int n))
+                {                 
+                    licz++;
+                }
+                else
+                {
+                    Console.WriteLine("Error while loading arrays lenght. Please give a positive number only");
+                }
+                licz = n;
+            }
+            return licz;
+            
+        }
+
+    }
+}
