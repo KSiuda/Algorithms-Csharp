@@ -1,0 +1,198 @@
+using System;
+
+namespace BinarySearch
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("Hello you awesome user! This magnificent piece of software allows you to create an array and binary search through it, returning the index of a given (later on ;) ) number! Have fun and enjoy!");
+
+            Console.WriteLine("Please give the value you want us later to return the index of. Please remember that this value should be in the array");
+            Int32.TryParse(Console.ReadLine(), out int guessNumber);
+
+            Console.WriteLine("Index of your given value is {0}", BinarySearch(CreateArray(), guessNumber));
+
+
+
+
+            Console.ReadKey();
+
+        }
+
+
+        public static int[] Tab(int lenght)
+        {
+
+            int[] tab = new int[lenght];
+            for (int i = 0; i < lenght; i++)
+            {
+                Console.WriteLine($"Give your value for the array with the index {i}");
+                tab[i] = GetWholeNumberFromTheUser();
+            }
+
+            return SortArray(tab, 0, tab.Length - 1);
+        }
+
+
+
+        public static int[] RandomTab(int lenght)
+        {
+
+            int[] tab = new int[lenght];
+
+            for (int i = 0; i < lenght; i++)
+            {
+                Random x = new Random();
+                tab[i] = x.Next(0, 100);
+                Console.WriteLine("Array[{0}] = {1}", i, tab[i]);
+            }
+
+            return SortArray(tab, 0, tab.Length - 1);
+
+        }
+
+
+
+        public static int BinarySearch(int[] tab, int item)
+        {
+
+
+            int lowest = 0;
+            int highest = tab.Length - 1;
+            int mid = 0;
+
+            while (lowest <= highest)
+            {
+
+                mid = (highest + lowest) / 2;
+                int guess = tab[mid];
+                if (guess == item)
+                {
+                    return mid;
+                }
+
+                else if (guess > item)
+                {
+                    highest = mid-1;
+
+                }
+                else
+                {
+                    lowest = mid+ 1;
+                }
+            }
+
+            throw new Exception("There is no element like this one in your array!");
+
+
+
+        }
+
+        public static int GetWholeNumberFromTheUser()
+        {
+            bool a = false;
+            Console.WriteLine("Please type in a whole number!");
+
+            while (a == false)
+            {
+                if (a == false)
+                {
+                    Int32.TryParse(Console.ReadLine(), out int input);
+                    a = true;
+                    return input;
+                }
+                else
+                {
+                    throw new ArgumentException("This is not a whole number! Please try again");
+
+                }
+            }
+            return 0;
+        }
+
+        public static int[] CreateArray()
+        {
+            Console.WriteLine("Give the lenght of your array");
+            int arrayLenght = GetWholeNumberFromTheUser();
+            Console.WriteLine("Would you like to fill it with random numbers or do you want to fill the numbers yourself? Press the number according to your choice \r\n 1.Fill it with random numbers \r\n 2.I want to type them myself \r\n 3.Exit");
+            Int32.TryParse(Console.ReadLine(), out int choice);
+            int[] tab;
+            switch (choice)
+            {
+                case 1:
+                    tab = RandomTab(arrayLenght);
+                    PrintSorted(tab);
+                    return tab;
+                case 2:
+                    tab = Tab(arrayLenght);
+                    PrintSorted(tab);
+                    return tab;
+                case 3:
+                    Environment.Exit(0);
+                    return null;
+
+            }
+            return null;
+        }
+
+        public static int[] SortArray(int[] tab, int min, int max)
+        {
+            int left = min;
+            int right = max;
+
+            if (tab.Length < 2)
+            {
+               
+                return tab;
+
+            }
+            else
+            {
+                int pivot = tab[(min + max) / 2];
+                while (left < right)
+                {
+                    while (tab[left] < pivot)
+                    {
+                        left++;
+                    }
+                    while (tab[right] > pivot)
+                    {
+                        right--;
+                    }
+                    if (left <= right)
+                    {
+                        int temp = tab[left];
+                        tab[left++] = tab[right];
+                        tab[right--] = temp;
+                    }
+                }
+                if (min < right)
+                {
+                    SortArray(tab, min, right);
+                }
+                if (right < max)
+                {
+                    SortArray(tab, left, max);
+                }
+
+                
+                return tab;
+            }
+
+        }
+
+        public static void PrintSorted(int[] tab)
+        {
+            Console.WriteLine("This is the sorted version of your array:");
+            for (int i = 0; i<tab.Length;i++)
+            {
+                Console.WriteLine($"Array[{i}] = {tab[i]}");
+            }
+        }
+        
+
+
+    }
+}
