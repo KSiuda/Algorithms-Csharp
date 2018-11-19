@@ -1,0 +1,104 @@
+using System;
+
+namespace QuickArraySort
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to this marvelous piece of software sorting arrays values for you, for a random generated array of a given lenght. \r\nPlease give the lenght of your array");
+
+            bool flag = false;
+
+            while (flag == false)
+            {
+                if (flag == false)
+                {
+                    Int32.TryParse(Console.ReadLine(), out int a);
+                    flag = true;
+
+                    int[] tab = RandomTab(a);
+                    int[] sorted = SortArray(tab, 0, tab.Length - 1);
+                    Console.WriteLine("Sorted:");
+                    for (int i =0;i<tab.Length;i++)
+                    {
+                        Console.WriteLine($"Array[{i}] = {tab[i]}");
+                    }
+                    Console.ReadKey();
+
+                }
+                else
+                {
+                    throw new Exception("This is not a whole number! Please try again!");
+                }
+
+
+            }
+        }
+
+
+        public static int[] RandomTab(int lenght)
+        {
+
+            int[] tab = new int[lenght];
+
+            for (int i = 0; i < lenght; i++)
+            {
+                Random x = new Random();
+                tab[i] = x.Next(0, 100);
+                Console.WriteLine("Array[{0}] = {1}", i, tab[i]);
+            }
+
+            return tab;
+        }
+
+        public static int[] SortArray(int[] tab, int min, int max)
+        {
+            int left = min;
+            int right = max;
+
+            if (tab.Length < 2)
+            {
+                return tab;
+            }
+            else
+            {
+                int pivot = tab[(min + max) / 2];
+                while (left < right)
+                {
+                    while (tab[left] < pivot)
+                    {
+                        left++;
+                    }
+                    while (tab[right] > pivot)
+                    {
+                        right--;
+                    }
+                    if (left <= right)
+                    {
+                        int temp = tab[left];
+                        tab[left++] = tab[right];
+                        tab[right--] = temp;
+                    }
+                }
+                if (min < right)
+                {
+                    SortArray(tab, min, right);
+                }
+                if (right < max)
+                {
+                    SortArray(tab, left, max);
+                }
+
+                return tab;
+            }
+
+        }
+    }
+
+}
+
+
+        
+   
+
