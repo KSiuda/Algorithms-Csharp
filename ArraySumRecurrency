@@ -1,0 +1,65 @@
+using System;
+
+namespace ArraySumRecurrency
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to this marvelous piece of software summing arrays values for you, for a random generated array of a given lenght. \r\nPlease give the lenght of your array");
+
+            bool flag = false;
+
+            while (flag ==false)
+            {
+                if(flag == false)
+                {
+                    Int32.TryParse(Console.ReadLine(), out int a);
+                    flag = true;
+
+                    int[] tab = RandomTab(a);                  
+                    Console.WriteLine("Sum of values in your arres is equal to {0}", ArrayValuesSum(tab, tab.Length-1));
+                    Console.ReadKey();
+                }
+                else
+                {
+                    throw new Exception("This is not a whole number! Please try again!");
+                }
+            }
+        
+            
+            
+            
+        }
+
+        public static int ArrayValuesSum (int [] tab, int n)
+        {
+
+            if (n == 0)
+            {
+                return tab[n];
+            }
+
+            else
+            {
+                return tab[n] + ArrayValuesSum(tab, n - 1);
+            }
+
+        }
+
+        public static int[] RandomTab(int lenght)
+        {
+
+            int[] tab = new int[lenght];
+
+            for (int i = 0; i < lenght; i++)
+            {
+                Random x = new Random();
+                tab[i] = x.Next(0, 100);
+                Console.WriteLine("Array[{0}] = {1}", i, tab[i]);
+            }
+
+            return tab;
+        }
+    }
+}
