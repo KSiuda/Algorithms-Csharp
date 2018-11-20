@@ -1,0 +1,39 @@
+using System;
+
+namespace MapExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Object[,] Map = { { "Śnieżka", 625, 1999, 125 }, { "ME", 7250, "MB", 677 }, { 125, "NE", 272, 677 }, { "Świnica", 7250, "K2", 3446 } };
+
+            int diff = 0;
+            int max = 0;
+            int min = int.MaxValue;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j<4;j++)
+                {
+                    if(Int32.TryParse(Map[i,j].ToString(), out int number))
+                    {
+                        if (number>max)
+                        {
+                            max = number;
+                        }
+                        if(number < min)
+                        {
+                            min = number;
+                        }
+                    }
+                }
+            }
+
+            diff = max - min;
+            Console.WriteLine(diff);
+
+            Console.ReadKey();
+        }
+    }
+}
