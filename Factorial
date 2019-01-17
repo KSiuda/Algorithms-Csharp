@@ -1,6 +1,6 @@
 using System;
 
-namespace Silnia
+namespace Factorial
 {
     class Program
     {
@@ -17,7 +17,7 @@ namespace Silnia
                     if (input >= 0)
                     {
                         Console.WriteLine("Your number: {0}", input);
-                        Console.WriteLine($"Your Factorial: {Silnia(input)}");
+                        Console.WriteLine($"Your Factorial: {Factorial(input)}");
                         flag = 1;
                     }
 
@@ -40,7 +40,7 @@ namespace Silnia
                  
         }
 
-        public static int Silnia(int a)
+        public static int Factorial(int a)
         {
 
             if (a == 0 || a ==1 )
