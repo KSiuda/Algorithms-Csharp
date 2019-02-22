@@ -7,11 +7,12 @@ All of these are console applications, with just one, Program.cs class:
 
 1. ArraySumRecurrency - Recursive function that sums up all the values in an array.
 
-2. BinarySearch - sort of "spagetthi code", since everything is stored in one Program.cs class. This implemantation searches through an array (binary search) and returns to the user index value of the searched number. 
+2. BinarySearch - This implemantation searches through an array (binary search) and returns to the user index value of the searched number. 
 This particular console app:
 a) lets you choose if you would like to create an array yourself or have a randomly generated one
 b) presents you the array, sorts it and presents you sorted array again
 c) Returns index of the searched value
+(sort of "spagetthi code", since everything is stored in one Program.cs class)
 
 3. Simple factorial calculation
 
