@@ -168,6 +168,7 @@ namespace BinarySearch
                         tab[right--] = temp;
                     }
                 }
+                
                 if (min < right)
                 {
                     SortArray(tab, min, right);
